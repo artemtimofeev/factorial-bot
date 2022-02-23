@@ -1,9 +1,10 @@
+import config
 from modules.message import Message
 from modules.bot import Bot
 
 
 def start():
-    bot = Bot(token="ceb2beb453eeb9d564a9249b70a3dd3e60bedaae6528f7ca4414444adee3d5ff9665eed50562aa306cb34")
+    bot = Bot(token=config.API_KEY)
     while True:
         new_message = bot.get_new_message()
         if new_message is not None:
