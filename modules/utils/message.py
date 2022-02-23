@@ -12,6 +12,11 @@ class Message(object):
         self.random_id = random.randint(1, 2 ** 64)
         self.keyboard = None
 
+        self.send_time = -1
+
+    def set_send_time(self, send_time):
+        self.send_time = send_time
+
     def set_text(self, text):
         self.text = text
 
@@ -41,3 +46,9 @@ class Message(object):
                           'message': self.text,
                           'attachment': self.attachments}
         return parameters
+
+    def __lt__(self, other):
+        return self.send_time < other.send_time
+
+    def __eq__(self, other):
+        return self.send_time == other.send_time

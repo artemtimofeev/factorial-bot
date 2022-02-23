@@ -1,5 +1,5 @@
 import requests
-from modules.message import Message
+from modules.utils.message import Message
 from vk_api import VkApi
 from vk_api import exceptions as api_exceptions
 from vk_api.longpoll import VkLongPoll, VkEventType, Event
