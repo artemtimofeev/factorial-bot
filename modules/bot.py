@@ -25,7 +25,8 @@ class Bot:
                 return event
 
     def send_message(self, message: Message):
-        try:
-            self.vk.method('messages.send', message.get_json())
-        except api_exceptions.ApiError as err:
-            print(err)
+        if message.text != "":
+            try:
+                self.vk.method('messages.send', message.get_json())
+            except api_exceptions.ApiError as err:
+                print(err)

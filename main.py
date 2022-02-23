@@ -10,10 +10,14 @@ def start():
 
     message_queue = MessageQueue()
 
+    users = {}
+
     while True:
         new_message = bot.get_new_message()
         if new_message is not None and new_message.user_id in [182040882, 348350925, 406197915, 579989535]:
-            response = Handler().answer(new_message)
+            if new_message.user_id not in users:
+                users[new_message.user_id] = Handler(user_id=new_message.user_id)
+            response = users[new_message.user_id].answer(new_message)
             message_queue.push(response)
 
             messages_to_send = message_queue.pop()
