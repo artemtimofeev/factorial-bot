@@ -50,7 +50,7 @@ class Handler:
                 response.append(Message(user_id=self.user_id, send_time=15))
                 response[1].set_text("Если тебе понравилась задачка, скинь её своим друзьям, пусть проверят себя!")
             else:
-                response = self.default_answer()
+                response[0] = self.default_answer()
 
         elif message.text == "Начать":
             response[0] = self.default_answer()
