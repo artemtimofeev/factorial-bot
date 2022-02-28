@@ -10,7 +10,8 @@ class Handler:
 
     def default_answer(self) -> Message:
         response = Message(user_id=self.user_id)
-        response.set_text("Привет, я бот.")
+        response.set_text("Привет! "
+                          "Если у тебя есть какой-то вопрос, нажми на нужную кнопку🙂")
 
         keyboard = VkKeyboard(inline=True)
         keyboard.add_button('Узнать решение задачи', color=VkKeyboardColor.POSITIVE)
@@ -31,7 +32,7 @@ class Handler:
 
         elif self.state == "start":
             if message.text == "Другой вопрос":
-                response.set_text("Напишите свой вопрос и Вам через некоторое время ответит менеджер чата. "
+                response.set_text("Напишите свой вопрос здесь, и на него ответит менеджер чата😊 \n\n"
                                   "Чтобы вернуть бота, нажмите кнопку ниже или напишите \"Начать\".")
 
                 keyboard = VkKeyboard(one_time=False)
@@ -40,7 +41,9 @@ class Handler:
 
                 self.state = "manager"
             elif message.text == "Узнать решение задачи":
-                response.set_text("[ДАННЫЕ УДАЛЕНЫ]")
+                response.set_text("РЕШЕНИЕ: "
+                                  "\n\n"
+                                  "*текст*")
                 keyboard = VkKeyboard(one_time=False)
                 keyboard.add_button('Начать', color=VkKeyboardColor.PRIMARY)
                 response.set_keyboard(keyboard)

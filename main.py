@@ -5,8 +5,11 @@ from modules.message_queue import MessageQueue
 from modules.bot import Bot
 
 
+stop = "no"
+
+
 def check_messages(bot, message_queue, users):
-    while True:
+    while not stop == "yes":
         new_message = bot.get_new_message()
         if new_message is not None and new_message.user_id in [182040882, 348350925, 406197915, 579989535]:
             if new_message.user_id not in users:
@@ -16,7 +19,7 @@ def check_messages(bot, message_queue, users):
 
 
 def send_messages(bot, message_queue):
-    while True:
+    while not stop == "yes":
         messages_to_send = message_queue.pop()
         for message in messages_to_send:
             bot.send_message(message)
