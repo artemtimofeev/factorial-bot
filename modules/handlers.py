@@ -24,7 +24,7 @@ class Handler:
 
         return response
 
-    def answer(self, message: Event) -> tuple[Message]:
+    def answer(self, message: Event):
         response = [Message(user_id=self.user_id), ]
 
         if self.state is None:
