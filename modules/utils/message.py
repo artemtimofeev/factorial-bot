@@ -1,8 +1,9 @@
 import random
+from datetime import datetime
 
 
 class Message(object):
-    def __init__(self, user_id=None):
+    def __init__(self, user_id=None, send_time=-1):
         self.user_id = user_id
         self.text = ""
         self.attachments = ""
@@ -12,7 +13,7 @@ class Message(object):
         self.random_id = random.randint(1, 2 ** 64)
         self.keyboard = None
 
-        self.send_time = -1
+        self.send_time = datetime.timestamp(datetime.now()) + send_time
 
     def set_send_time(self, send_time):
         self.send_time = send_time

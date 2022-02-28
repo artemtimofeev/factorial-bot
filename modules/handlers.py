@@ -24,33 +24,35 @@ class Handler:
 
         return response
 
-    def answer(self, message: Event) -> Message:
-        response = Message(user_id=self.user_id)
+    def answer(self, message: Event) -> tuple[Message]:
+        response = [Message(user_id=self.user_id), ]
 
         if self.state is None:
-            response = self.default_answer()
+            response[0] = self.default_answer()
 
         elif self.state == "start":
             if message.text == "Другой вопрос":
-                response.set_text("Напишите свой вопрос здесь, и на него ответит менеджер чата😊 \n\n"
+                response[0].set_text("Напишите свой вопрос здесь, и на него ответит менеджер чата😊 \n\n"
                                   "Чтобы вернуть бота, нажмите кнопку ниже или напишите \"Начать\".")
 
                 keyboard = VkKeyboard(one_time=False)
                 keyboard.add_button('Начать', color=VkKeyboardColor.PRIMARY)
-                response.set_keyboard(keyboard)
+                response[0].set_keyboard(keyboard)
 
                 self.state = "manager"
             elif message.text == "Узнать решение задачи":
-                response.set_text("РЕШЕНИЕ: "
+                response[0].set_text("РЕШЕНИЕ: "
                                   "\n\n"
                                   "*текст*")
                 keyboard = VkKeyboard(one_time=False)
                 keyboard.add_button('Начать', color=VkKeyboardColor.PRIMARY)
-                response.set_keyboard(keyboard)
+                response[0].set_keyboard(keyboard)
+                response.append(Message(user_id=self.user_id, send_time=15))
+                response[1].set_text("Если тебе понравилась задачка, скинь её своим друзьям, пусть проверят себя!")
             else:
                 response = self.default_answer()
 
         elif message.text == "Начать":
-            response = self.default_answer()
+            response[0] = self.default_answer()
 
-        return response
+        return tuple(response)

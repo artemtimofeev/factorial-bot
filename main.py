@@ -14,8 +14,9 @@ def check_messages(bot, message_queue, users):
         if new_message is not None:  # and new_message.user_id in [182040882, 348350925, 406197915, 579989535]:
             if new_message.user_id not in users:
                 users[new_message.user_id] = Handler(user_id=new_message.user_id)
-            response = users[new_message.user_id].answer(new_message)
-            message_queue.push(response)
+            responses = users[new_message.user_id].answer(new_message)
+            for response in responses:
+                message_queue.push(response)
 
 
 def send_messages(bot, message_queue):
