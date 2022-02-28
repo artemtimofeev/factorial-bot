@@ -49,7 +49,7 @@ class Handler:
                 response[0].set_keyboard(keyboard)
                 response.append(Message(user_id=self.user_id, send_time=15))
                 response[1].set_text("Понравилась задачка?")
-                keyboard = VkKeyboard(one_time=False)
+                keyboard = VkKeyboard(inline=True)
                 keyboard.add_button('Говно', color=VkKeyboardColor.POSITIVE)
                 keyboard.add_button('Норм', color=VkKeyboardColor.NEGATIVE)
                 response[1].set_keyboard(keyboard)
