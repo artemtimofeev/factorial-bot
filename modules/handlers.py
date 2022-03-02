@@ -66,9 +66,18 @@ class Handler:
                 keyboard.add_button('👍', color=VkKeyboardColor.POSITIVE)
                 keyboard.add_button('👎', color=VkKeyboardColor.NEGATIVE)
                 response[1].set_keyboard(keyboard)
+
+                self.state = "evaluate"
             else:
                 response[0] = self.default_answer()
-
+        elif self.state == "evaluate":
+            if message.text == '👍':
+                response[0].set_text("Отлично")
+            elif message.text == '👎':
+                response[0].set_text("Не отлично")
+            else:
+                response[0] = self.default_answer()
+            self.state = "start"
         elif message.text == "Начать":
             response[0] = self.default_answer()
 

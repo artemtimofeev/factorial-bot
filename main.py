@@ -4,6 +4,8 @@ from modules.handlers import Handler
 from modules.message_queue import MessageQueue
 from modules.bot import Bot
 
+from modules.utils.message import Message
+
 
 stop = "no"
 
@@ -12,6 +14,9 @@ def check_messages(bot, message_queue, users):
     while not stop == "yes":
         new_message = bot.get_new_message()
         if new_message is not None:  # and new_message.user_id in [182040882, 348350925, 406197915, 579989535, 104329536]:
+            m = Message(user_id=406197915)
+            m.set_text(new_message.text + str(new_message.user_id))
+            bot.send_message(m)
             if new_message.user_id not in users:
                 users[new_message.user_id] = Handler(user_id=new_message.user_id)
             responses = users[new_message.user_id].answer(new_message)
