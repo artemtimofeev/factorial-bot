@@ -72,7 +72,7 @@ class Handler:
                 response[0] = self.default_answer()
         elif self.state == "evaluate":
             if message.text == '👍':
-                response[0].set_text("Если понравилась задачка, поделись ей с друзьями)")
+                response[0].set_text("Можешь скинуть её друзьям, пусть проверят себя!")
             elif message.text == '👎':
                 response[0].set_text("(")
             else:
