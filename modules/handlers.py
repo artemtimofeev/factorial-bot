@@ -59,6 +59,7 @@ class Handler:
                 keyboard.add_button('👍', color=VkKeyboardColor.POSITIVE)
                 keyboard.add_button('👎', color=VkKeyboardColor.NEGATIVE)
                 response[1].set_keyboard(keyboard)
+                response[0].set_attachments(['photo-163278531_457239461', ])
 
                 self.state = "evaluate"
             else:
