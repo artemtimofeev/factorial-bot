@@ -65,7 +65,11 @@ class Handler:
                 response[0] = self.default_answer()
         elif self.state == "evaluate":
             if message.text == '👍':
-                response[0].set_text("Можешь скинуть её друзьям, пусть проверят себя!")
+                response[0].set_text("Отлично! Если хочешь больше интересных физических историй и задачек, подпишись, чтобы не пропустить😊")
+                keyboard = VkKeyboard(inline=True)
+                link = "https://vk.com/widget_community.php?act=a_subscribe_box&oid=-163278531&state=1"
+                keyboard.add_openlink_button(label='Подписаться', link=link)
+                response[0].set_keyboard(keyboard)
             elif message.text == '👎':
                 response[0].set_text("(")
             else:
