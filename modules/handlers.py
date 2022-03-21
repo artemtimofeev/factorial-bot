@@ -3,9 +3,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import Event
 
 PROBLEM_1_SOLUTION = """
-Как только курицу положат в контейнер, вокруг неё почти моментально образуется горячий воздух, пока крышку ещё даже не закрыли. После того, как крышку закроют, спустя длительное время, воздух остынет до комнатной температуры (ввиду теплообмена через стенку контейнера). Охлаждённый воздух будет при том же объёме иметь меньшее давление, чем воздух снаружи, и атмосферное давление сожмёт контейнер. Причем при сжатии давление воздуха снова вырастет, и процесс сжатия прекратится, когда давление сравняется с атмосферным
-
-Ответ: сожмётся"""
+напишите своё решение здесь, мы проверим его в течение суток. Авторы первых трёх решений, которые окажутся грамотными и изобретательными, получат стикерпак! Так что поспешите)"""
 
 
 class Handler:
@@ -45,22 +43,20 @@ class Handler:
                 response[0].set_keyboard(keyboard)
 
                 self.state = "manager"
-            elif message.text == "Узнать решение задачи":
-                response[0].set_text(f"РЕШЕНИЕ: "
-                                  "\n\n"
-                                  f"{PROBLEM_1_SOLUTION}")
+            elif message.text == "Отправить решение задачи":
+                response[0].set_text(f"{PROBLEM_1_SOLUTION}")
                 keyboard = VkKeyboard(one_time=False)
                 keyboard.add_button('Начать', color=VkKeyboardColor.PRIMARY)
                 response[0].set_keyboard(keyboard)
-                response.append(Message(user_id=self.user_id, send_time=15))
-                response[1].set_text("Понравилась задачка?")
-                keyboard = VkKeyboard(inline=True)
-                keyboard.add_button('👍', color=VkKeyboardColor.POSITIVE)
-                keyboard.add_button('👎', color=VkKeyboardColor.NEGATIVE)
-                response[1].set_keyboard(keyboard)
-                response[0].set_attachments(['photo-163278531_457239466', ])
+                #response.append(Message(user_id=self.user_id, send_time=15))
+                #response[1].set_text("Понравилась задачка?")
+                #keyboard = VkKeyboard(inline=True)
+                #keyboard.add_button('👍', color=VkKeyboardColor.POSITIVE)
+                #keyboard.add_button('👎', color=VkKeyboardColor.NEGATIVE)
+                #response[1].set_keyboard(keyboard)
+                #response[0].set_attachments(['photo-163278531_457239466', ])
 
-                self.state = "evaluate"
+                self.state = "manager"
             else:
                 response[0] = self.default_answer()
         elif self.state == "evaluate":
