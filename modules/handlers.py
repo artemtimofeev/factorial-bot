@@ -17,7 +17,7 @@ class Handler:
                           "Если у тебя есть какой-то вопрос, нажми на нужную кнопку🙂")
 
         keyboard = VkKeyboard(inline=True)
-        keyboard.add_button('Узнать решение задачи', color=VkKeyboardColor.POSITIVE)
+        keyboard.add_button('Отправить решение задачи', color=VkKeyboardColor.POSITIVE)
         keyboard.add_line()
         keyboard.add_button('Другой вопрос', color=VkKeyboardColor.SECONDARY)
 
